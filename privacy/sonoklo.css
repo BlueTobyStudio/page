@@ -150,12 +150,13 @@ sup {
   top:-.5em
 }
 a {
-  color:#1883bd;
+  color:#0007D6;
   text-decoration:none;
   background-color:transparent
 }
+
 a:hover {
-  color:#0f5479;
+  color:#0007D6;
   text-decoration:underline
 }
 a:not([href]):not([class]),
