@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,6 +12,7 @@
       padding: 0;
       box-sizing: border-box;
     }
+
     body {
       display: flex;
       justify-content: center;
@@ -22,15 +24,18 @@
       font-size: 25%;
       color: #333;
     }
+
     .container {
       text-align: center;
-      padding: 2rem;
+      /* padding: 2rem; */
     }
+
     .container img {
       max-width: 100%;
       height: auto;
-      margin-bottom: 1.5rem;
+      /* margin-bottom: 1.5rem; */
     }
+
     .container p {
       font-size: 3rem;
       letter-spacing: 0em;
@@ -38,14 +43,79 @@
     }
 
     .logo {
-        width: 25%;
-        height: 25%;
+      width: 25%;
+      height: 25%;
+      margin: 0;
+    }
+
+    /* Container styles */
+    .scrolling-text-container {
+      background-color: #000;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    /* Inner container styles */
+    .scrolling-text-inner {
+      display: flex;
+      white-space: nowrap;
+      font-size: 8px;
+      font-weight: 1000;
+      color: #c9d3ff;
+      padding: 0px 0;
+    }
+
+    /* Text styles */
+    .scrolling-text {
+      display: flex;
+    }
+
+    .scrolling-text-item {
+      padding: 0 30px;
+    }
+
+    /* Apply the animation to the text items */
+    .scrolling-text-inner>div {
+      animation: var(--direction) var(--marquee-speed) linear infinite;
+    }
+
+    /* Setting the Animation using Keyframes */
+    @keyframes scroll-left {
+      /* 0% {
+        transform: translateX(0%);
+      }
+
+      100% {
+        transform: translateX(-100%);
+      } */
+    }
+
+    @keyframes scroll-right {
+      /* 0% {
+        transform: translateX(-100%);
+      }
+
+      100% {
+        transform: translateX(0%);
+      } */
     }
   </style>
 </head>
+
 <body>
   <div class="container">
     <img src="res/logo.svg" alt="" class="logo">
+
+    <!-- <div class="scrolling-text-container">
+      <div class="scrolling-text-inner" style="--marquee-speed: 20s; --direction:scroll-left" role="marquee">
+        <div class="scrolling-text">
+          <div class="scrolling-text-item">2026-03-01</div>
+        </div>
+      </div>
+    </div> -->
+  <!-- </div> -->
   </div>
+
 </body>
+
 </html>
