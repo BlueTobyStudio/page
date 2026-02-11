@@ -5,8 +5,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Blue Toby Studio</title>
-  <meta name="description" content="The studio is under construction. We are launching soon...">
+  <meta name="description" content="Human">
   <link rel="icon" href="./res/favicon.ico" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -15,15 +18,117 @@
     }
 
     body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
       height: 100vh;
-      background-color: #c9d3ff;
+    }
+
+    #main_div {
+      width: 100%;
+      height: 100%;
+      background-color: #fff;
       font-family: Sansation, sans-serif;
       font-weight: 700;
       font-size: 25%;
-      color: #333;
+      color: #000;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      justify-content: flex-start;
+      align-items: stretch;
+      align-content: stretch;
+    }
+
+    #side_bar {
+      height: 100%;
+      background-color: black;
+      position: fixed;
+      display: flex;
+      align-items: center;
+      /* justify-content: center; */
+      flex-direction: column;
+    }
+
+    #side_bar_content {
+      width: 100%;
+      flex-grow: 1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-direction: column;
+      padding: 10%;
+      /* padding-top: 0%; */
+    }
+
+    #title_box {
+      width: 100%;
+      color: #fff;
+      container-type: inline-size;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    #title_b {
+      font-size: 13.5cqw;
+      white-space: nowrap;
+      display: inline;
+    }
+
+    #title_t {
+      font-size: 20cqw;
+      white-space: nowrap;
+      display: inline;
+    }
+
+    #content_div {
+      height: 100%;
+      background-color: #fff;
+    }
+
+    #logo_big_div {
+      width: 100%;
+      aspect-ratio: 1.25;
+      background-color: transparent;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      justify-content: center;
+      align-items: center;
+      align-content: stretch;
+    }
+
+
+    #logo_upper_cut {
+      background-color: white;
+      width: 100%;
+      aspect-ratio: 2.6;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    #logo_inner_bg {
+      background-color: #4775ff;
+      width: 45%;
+      border-radius: 50%;
+      aspect-ratio: 1;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    #logo_div {
+      width: 75%;
+      border-radius: 50%;
+      aspect-ratio: 1;
+      background-color: #fff;
+      z-index: 3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
     }
 
     .container {
@@ -45,17 +150,18 @@
       visibility: false;
     }
 
-    .logo {
-      width: 25%;
-      height: 25%;
+    #main_logo {
+      width: 90%;
+      aspect-ratio: 1;
       margin: 0;
+      z-index: 3;
     }
 
     /* From Uiverse.io by adamgiebl */
-    button {
+    .contact_button {
       font-family: inherit;
       font-size: 20px;
-      background: #000000;
+      background: #4775ff;
       color: white;
       padding: 0.7em 1em;
       padding-left: 0.9em;
@@ -67,38 +173,89 @@
       transition: all 0.2s;
       cursor: pointer;
       justify-content: space-evenly;
-      width: 20%;
+      gap: 16px;
+      position: relative;
+      /* width: 90%; */
     }
 
-    button span {
+    .contact_button b {
       display: none;
+      font-family: "League Spartan", sans-serif;
+      text-transform: uppercase;
+      padding-top: 0.2em;
     }
 
-    @media only screen and (min-width: 768px) {
-      button span {
+    /**/
+            .contact_button b {
         display: block;
         transition: all 0.3s ease-in-out;
         text-align: end;
       }
 
-      button:hover .svg-wrapper {
+      .contact_button:hover .svg-wrapper {
         animation: fly-1 0.6s ease-in-out infinite alternate;
       }
 
-      button:hover svg {
-        transform: translateX(3.2em) rotate(45deg) scale(1.1);
+      .contact_button:hover svg {
+        transform: translateX(3.3em) rotate(45deg) scale(1.1);
       }
 
-      button:hover span {
+      .contact_button:hover b {
         transform: translateX(10em);
       }
 
-      button:active {
+      .contact_button:active {
         transform: scale(0.95);
+      }
+    /**/
+
+    @media only screen and (max-width: 768px) {
+      /* Phone size */
+
+      #side_bar {
+        width: 100%;
+      }
+
+      #content_div {
+        height: 0%;
+      }
+
+      /* .contact_button b {
+        display: block;
+        transition: all 0.3s ease-in-out;
+        text-align: end;
+      }
+
+      .contact_button:hover .svg-wrapper {
+        animation: fly-1 0.6s ease-in-out infinite alternate;
+      }
+
+      .contact_button:hover svg {
+        transform: translateX(3.3em) rotate(45deg) scale(1.1);
+      }
+
+      .contact_button:hover b {
+        transform: translateX(10em);
+      }
+
+      .contact_button:active {
+        transform: scale(0.95);
+      } */
+    }
+
+    @media only screen and (min-width: 768px) {
+      /* Computer size */
+
+      #side_bar {
+        width: 20%;
+      }
+
+      #content_div {
+        height: 80%;
       }
     }
 
-    button svg {
+    .contact_button svg {
       display: block;
       transform-origin: center center;
       transition: transform 0.3s ease-in-out;
@@ -117,11 +274,52 @@
 </head>
 
 <body>
-  <div class="container">
-    <img src="res/logo.svg" alt="" class="logo">
+  <div id="main_div">
+    <div id="side_bar">
+      <div id="logo_big_div">
+        <div id="logo_div">
+          <img src="res/logo.svg" alt="" id="main_logo">
+          <span id="logo_inner_bg"></span>
+        </div>
+        <span id="logo_upper_cut"></span>
+      </div>
 
-    <!-- From Uiverse.io by adamgiebl -->
-    <button onclick="window.location.href='mailto:talk@bluetobystudio.com'">
+      <div id="side_bar_content">
+        <div id="title_box">
+          <p id="title_b">
+            BLUE TOBY
+          </p>
+          <p id="title_t">
+            STUDIO
+          </p>
+        </div>
+
+        <button class="contact_button" onclick="window.location.href='mailto:talk@bluetobystudio.com'">
+          <div class=" svg-wrapper-1">
+            <div class="svg-wrapper">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                <path fill="none" d="M0 0h24v24H0z"></path>
+                <path fill="currentColor"
+                  d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z">
+                </path>
+              </svg>
+            </div>
+          </div>
+          <b>Get in touch</b>
+        </button>
+      </div>
+
+    </div>
+    <div id="content_div">
+
+    </div>
+  </div>
+
+  <!-- <div class="container"> -->
+  <!-- <img src="res/logo.svg" alt="" class="logo"> -->
+
+  <!-- From Uiverse.io by adamgiebl -->
+  <!-- <button class="contact_button" onclick="window.location.href='mailto:talk@bluetobystudio.com'">
       <div class=" svg-wrapper-1">
         <div class="svg-wrapper">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
@@ -133,7 +331,7 @@
         </div>
       </div>
       <span>Get in touch</span>
-    </button>
+    </button> -->
 
 
 
