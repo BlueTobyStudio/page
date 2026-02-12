@@ -67,18 +67,45 @@
       justify-content: center;
       align-items: center;
       flex-direction: column;
+      font-family: "League Spartan";
     }
 
     #title_b {
-      font-size: 13.5cqw;
+      font-size: 16.5cqw;
+      white-space: nowrap;
+      display: inline;
+      transform: translate(0%, 15%);
+    }
+
+    #title_t {
+      font-size: 25cqw;
       white-space: nowrap;
       display: inline;
     }
 
-    #title_t {
-      font-size: 20cqw;
-      white-space: nowrap;
-      display: inline;
+    #menu_box {
+      color: #fff;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: self-start;
+      flex-direction: column;
+      font-family: "League Spartan";
+      transform: translateX(-5%);
+    }
+
+    #menu_text {
+      font-size: 2cqw;
+      padding: 5%;
+    }
+
+    #menu_text:hover {
+      background-color: #ffffffd1;
+      color: #000;
+    }
+
+    #menu_text:active {
+      scale: 0.95;
     }
 
     #content_div {
@@ -100,7 +127,7 @@
 
 
     #logo_upper_cut {
-      background-color: white;
+      background-color: transparent;
       width: 100%;
       aspect-ratio: 2;
       position: absolute;
@@ -110,13 +137,13 @@
 
     #logo_inner_bg {
       background-color: #4775ff;
-      width: 45%;
+      width: 50%;
       border-radius: 50%;
       aspect-ratio: 1;
       position: absolute;
       top: 50%;
       left: 50%;
-      transform: translate(-50%, -50%);
+      transform: translate(-50%, -53%);
     }
 
     #logo_div {
@@ -186,27 +213,28 @@
     }
 
     /**/
-            .contact_button b {
-        display: block;
-        transition: all 0.3s ease-in-out;
-        text-align: end;
-      }
+    .contact_button b {
+      display: block;
+      transition: all 0.3s ease-in-out;
+      text-align: end;
+    }
 
-      .contact_button:hover .svg-wrapper {
-        animation: fly-1 0.6s ease-in-out infinite alternate;
-      }
+    .contact_button:hover .svg-wrapper {
+      animation: fly-1 0.6s ease-in-out infinite alternate;
+    }
 
-      .contact_button:hover svg {
-        transform: translateX(3.3em) rotate(45deg) scale(1.1);
-      }
+    .contact_button:hover svg {
+      transform: translateX(3.3em) rotate(45deg) scale(1.1);
+    }
 
-      .contact_button:hover b {
-        transform: translateX(10em);
-      }
+    .contact_button:hover b {
+      transform: translateX(10em);
+    }
 
-      .contact_button:active {
-        transform: scale(0.95);
-      }
+    .contact_button:active {
+      transform: scale(0.95);
+    }
+
     /**/
 
     @media only screen and (max-width: 768px) {
@@ -291,6 +319,21 @@
           </p>
           <p id="title_t">
             STUDIO
+          </p>
+        </div>
+
+        <div id="menu_box">
+          <p id="menu_text">
+            NEWS
+          </p>
+          <p id="menu_text">
+            PURPOSE
+          </p>
+          <p id="menu_text">
+            GAMES
+          </p>
+          <p id="menu_text">
+            SUPPORT
           </p>
         </div>
 
