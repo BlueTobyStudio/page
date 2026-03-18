@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blue Toby Studio</title>
+  <meta name="description" content="Human">
+  <link rel="icon" href="./res/favicon.ico" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap"
+    rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      cursor: none;
+    }
+
+    body {
+      height: 100vh;
+    }
+
+    #side_bar ::selection {
+      background-color: #1b1c1f;
+    }
+
+    #side_bar ::-moz-selection {
+      background-color: #1b1c1f;
+    }
+
+    #content_div ::selection {
+      background-color: #e0e3ea;
+    }
+
+    #content_div ::-moz-selection {
+      background-color: #e0e3ea;
+    }
+
+
+    #main_div {
+      width: 100%;
+      height: 100%;
+      background-color: #fff;
+      font-family: Sansation, sans-serif;
+      font-weight: 700;
+      font-size: 25%;
+      color: #000;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      justify-content: flex-start;
+      align-items: stretch;
+      align-content: stretch;
+    }
+
+    #side_bar {
+      height: 100%;
+      background-color: black;
+      outline: #323234 solid 1px;
+      position: fixed;
+      display: flex;
+      align-items: center;
+      /* justify-content: center; */
+      flex-direction: column;
+      z-index: 5;
+    }
+
+    #side_bar_content {
+      width: 100%;
+      flex-grow: 1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-direction: column;
+      padding: 10%;
+      padding-top: 0%;
+    }
+
+    #title_box {
+      width: 100%;
+      color: #fff;
+      container-type: inline-size;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      font-family: "League Spartan";
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    #title_b {
+      font-size: 16.5cqw;
+      white-space: nowrap;
+      display: inline;
+      transform: translate(0%, 15%);
+    }
+
+    #title_t {
+      font-size: 25cqw;
+      white-space: nowrap;
+      display: inline;
+    }
+
+    #menu_box {
+      color: #fff;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: self-start;
+      flex-direction: column;
+      font-family: "League Spartan";
+      transform: translateX(-5%);
+    }
+
+    .nav_selected {
+      background-color: #fff;
+      color: #000;
+    }
+
+    .menu_text {
+      font-size: 2cqw;
+      padding: 5%;
+      user-select: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+    }
+
+    .menu_text:hover {
+      background-color: #fff;
+      color: #000;
+    }
+
+    #menu_text:active {
+      scale: 0.95;
+    }
+
+    #content_div {
+      position: relative;
+      font-size: 10em;
+      background-color: #fff;
+    }
+
+    .anchor_page {
+      width: 100%;
+      height: 100%;
+    }
+
+    #home_page {
+      background-color: #000;
+      display: flex;
+      flex-direction: column;
+    }
+
+    #home_page_title {
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      font-size: 15cqw;
+      font-family: "Josefin Sans", sans-serif;
+      font-weight: 700;
+      background-color: transparent;
+    }
+
+    #home_page_game {
+      background-color: transparent;
+      position: absolute;
+      z-index: 3;
+      height: 100%;
+      aspect-ratio: 1.5;
+    }
+
+    #home_page_game_apple {
+      position: absolute;
+      z-index: 3;
+      border-radius: 50%;
+      background-color: red;
+      height: 5vmin;
+      aspect-ratio: 1;
+      transform: translate(-50%, -50%);
+    }
+
+    /* 
+    .snake_tail>.home_page_game_snake_trail_rect {
+      display: none;
+    }
+
+*/
+
+    /* .snake_head>.home_page_game_snake_trail_circle {
+      display: none;
+    }
+
+    .snake_head>.home_page_game_snake_link {
+      display: none;
+    } */
+
+    .snake_head>.home_page_game_snake_trail_rect {
+      display: none;
+    }
+
+    .snake_tail>.home_page_game_snake_trail_circle {
+      display: none;
+    }
+
+    .snake_tail>.home_page_game_snake_link {
+      display: none;
+    }
+
+
+    .home_page_game_snake {
+      position: absolute;
+      z-index: 3;
+      /* background-color: rgba(255, 255, 0, 0.23); */
+      height: 15vmin;
+      aspect-ratio: 1;
+      transform: translate(-50%, -50%);
+      backface-visibility: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .home_page_game_snake_current_circle {
+      position: absolute;
+      z-index: 3;
+      background-color: blue;
+      width: 33.33%;
+      height: 33.33%;
+      top: 33.33%;
+      left: 33.33%;
+      border-radius: 50vh;
+      backface-visibility: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .home_page_game_snake_trail_circle {
+      position: absolute;
+      z-index: 3;
+      background-color: blue;
+      width: 33.33%;
+      height: 33.33%;
+      top: 33.33%;
+      left: 33.33%;
+      border-radius: 50vh;
+      backface-visibility: hidden;
+      -webkit-font-smoothing: antialiased;
+      transition: none;
+    }
+
+    .home_page_game_snake_trail_rect {
+      position: absolute;
+      z-index: 3;
+      background-color: blue;
+      /* background-color: green; */
+      width: 33.33%;
+      height: 33.33%;
+      top: 33.33%;
+      left: 33.33%;
+      backface-visibility: hidden;
+      -webkit-font-smoothing: antialiased;
+      transition: none;
+    }
+
+    .home_page_game_snake_link {
+      position: absolute;
+      z-index: 3;
+      background-color: blue;
+      width: 0%;
+      height: 0%;
+      top: 50%;
+      left: 50%;
+      backface-visibility: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .animated_body {
+      /* transition: top 0.10s linear, left 0.10s linear, width 0.10s linear, height 0.10s linear; */
+    }
+
+    #news_page {
+      background-color: yellow;
+    }
+
+    #purpose_page {
+      background-color: yellowgreen;
+    }
+
+    #games_page {
+      background-color: green;
+    }
+
+    #support_page {
+      background-color: aquamarine;
+    }
+
+    #logo_big_div {
+      width: 100%;
+      aspect-ratio: 1.2;
+      background-color: transparent;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      justify-content: center;
+      align-items: center;
+      align-content: stretch;
+    }
+
+
+    #logo_upper_cut {
+      background-color: transparent;
+      width: 100%;
+      aspect-ratio: 2;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    #logo_inner_bg {
+      background-color: #4775ff;
+      width: 50%;
+      border-radius: 50%;
+      aspect-ratio: 1;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -53%);
+    }
+
+    #logo_div {
+      width: 60%;
+      border-radius: 50%;
+      aspect-ratio: 1;
+      background-color: #fff;
+      z-index: 3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .container {
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .container img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .container p {
+      font-size: 3rem;
+      letter-spacing: 0em;
+      visibility: false;
+    }
+
+    #main_logo {
+      width: 90%;
+      aspect-ratio: 1;
+      margin: 0;
+      z-index: 3;
+    }
+
+    /* From Uiverse.io by adamgiebl */
+    .contact_button {
+      font-family: inherit;
+      font-size: 20px;
+      background: #4775ff;
+      color: white;
+      padding: 0.7em 1em;
+      padding-left: 0.9em;
+      display: inline-flex;
+      align-items: center;
+      border: none;
+      border-radius: 50vh;
+      overflow: hidden;
+      transition: all 0.2s;
+      /* cursor: pointer; */
+      justify-content: space-between;
+      gap: 8px;
+      position: relative;
+      /* width: 90%; */
+    }
+
+    .contact_button b {
+      display: none;
+      font-family: "League Spartan", sans-serif;
+      text-transform: uppercase;
+      padding-top: 0.2em;
+    }
+
+    /**/
+    .contact_button b {
+      display: block;
+      transition: all 0.3s ease-in-out;
+      /* text-align: end; */
+    }
+
+    .contact_button:hover .svg-wrapper {
+      animation: fly-1 0.6s ease-in-out infinite alternate;
+    }
+
+    .contact_button:hover svg {
+      transform: translateX(3.3em) rotate(45deg) scale(1.1);
+    }
+
+    .contact_button:hover b {
+      transform: translateX(10em);
+    }
+
+    .contact_button:active {
+      transform: scale(0.95);
+    }
+
+    /**/
+
+
+    #follow_mouse {
+      position: fixed;
+      -webkit-backdrop-filter: invert(100%) hue-rotate(-90deg) hue-rotate(30deg) brightness(100%) saturate(1000%);
+      backdrop-filter: invert(100%) hue-rotate(-90deg) hue-rotate(30deg) brightness(100%) saturate(1000%);
+      border-radius: 50%;
+      width: 2vh;
+      height: 2vh;
+      top: -1vh;
+      left: -1vh;
+      z-index: 1000;
+      pointer-events: none;
+      transition-duration: 3s, transform 0s;
+
+      clip-path: circle(50% at 50% 50%);
+      transition: clip-path 0.3s ease, border-radius 0.3s ease, width 0.1s ease, height 0.1s ease, left 0.1s ease, top 0.1s ease;
+    }
+
+    #follow_mouse.triangle {
+      border-radius: 0%;
+      clip-path: polygon(50% 10%, 0% 100%, 100% 100%);
+    }
+
+    @media only screen and (max-width: 768px) {
+      /* Phone size */
+
+      #side_bar {
+        width: 100%;
+      }
+
+      #content_div {
+        left: 0%;
+        width: 0%;
+        display: none;
+      }
+    }
+
+    @media only screen and (min-width: 768px) {
+      /* Computer size */
+
+      #side_bar {
+        width: 20%;
+      }
+
+      #content_div {
+        left: 20%;
+        width: 80%;
+      }
+    }
+
+    .contact_button svg {
+      display: block;
+      transform-origin: center center;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    @keyframes fly-1 {
+      from {
+        transform: translateY(0.05em);
+      }
+
+      to {
+        transform: translateY(-0.05em);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="main_div">
+    <span id="follow_mouse"></span>
+    <div id="side_bar">
+      <div id="logo_big_div">
+        <div id="logo_div">
+          <img src="res/logo.svg" alt="" id="main_logo">
+          <span id="logo_inner_bg"></span>
+        </div>
+        <span id="logo_upper_cut"></span>
+      </div>
+
+      <div id="side_bar_content">
+        <div id="title_box">
+          <p id="title_b">
+            BLUE TOBY</p>
+          <p id="title_t">
+            STUDIO</p>
+        </div>
+
+        <div id="menu_box">
+          <p class="menu_text" id="news_nav">
+            NEWS</p>
+          <p class="menu_text" id="purpose_nav">
+            PURPOSE</p>
+          <p class="menu_text" id="games_nav">
+            GAMES</p>
+          <p class="menu_text" id="support_nav">
+            SUPPORT</p>
+        </div>
+
+        <button class="contact_button" id="contact_button"
+          onclick="window.location.href='mailto:talk@bluetobystudio.com'">
+          <div class=" svg-wrapper-1">
+            <div class="svg-wrapper">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                <path fill="none" d="M0 0h24v24H0z"></path>
+                <path fill="currentColor"
+                  d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z">
+                </path>
+              </svg>
+            </div>
+          </div>
+          <b>Get in touch</b>
+        </button>
+      </div>
+
+    </div>
+    <div id="content_div">
+      <div id="home_page" class="anchor_page">
+        <!-- <h2 id="home_page_title">
+        </h2>
+        <div id="home_page_game">
+          <div id="home_page_game_apple">
+          </div>
+          <div id="snake_body_1" class="snake_tail home_page_game_snake">
+            <span id="home_page_game_snake_current_1" class="home_page_game_snake_current_circle"></span>
+            <span id="home_page_game_snake_trail_1" class="home_page_game_snake_trail_circle"></span>
+            <span id="home_page_game_snake_link_1" class="home_page_game_snake_link"></span>
+            <span id="home_page_game_snake_trect_1" class="home_page_game_snake_trail_rect"></span>
+          </div>
+          <div id="snake_body_0" class="snake_head home_page_game_snake">
+            <span id="home_page_game_snake_current_0" class="home_page_game_snake_current_circle"></span>
+            <span id="home_page_game_snake_trail_0" class="home_page_game_snake_trail_circle"></span>
+            <span id="home_page_game_snake_link_0" class="home_page_game_snake_link"></span>
+            <span id="home_page_game_snake_trect_0" class="home_page_game_snake_trail_rect"></span>
+          </div>
+        </div> -->
+      </div>
+      <div id="news_page" class="anchor_page">
+        News
+      </div>
+      <div id="purpose_page" class="anchor_page">
+        Purpose
+      </div>
+      <div id="games_page" class="anchor_page">
+        Games
+      </div>
+      <div id="support_page" class="anchor_page">
+        Support
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // FOLLOW MOUSE 
+    const circle_mouse = document.getElementById("follow_mouse");
+    const mouse = { x: 0, y: 0 };
+    const circle = { x: 0, y: 0 };
+    const speed = 0.95;
+    window.addEventListener("mousemove", (e) => {
+      mouse.x = e.x;
+      mouse.y = e.y
+    });
+    const tick = () => {
+      circle.x += (mouse.x - circle.x) * speed;
+      circle.y += (mouse.y - circle.y) * speed;
+
+      if (circle.x <= 0.1 && circle.y <= 0.1) {
+        circle_mouse.style.transform = `translate(20vw, 50vh)`;
+      } else {
+        circle_mouse.style.transform = `translate(${circle.x}px, ${circle.y}px)`;
+      }
+
+      window.requestAnimationFrame(tick);
+    };
+
+    window.addEventListener("mousedown", async (e) => {
+      circle_mouse.style.width = "1.4vh";
+      circle_mouse.style.height = "1.4vh";
+      circle_mouse.style.top = "-0.7vh";
+      circle_mouse.style.left = "-0.7vh";
+    });
+
+    window.addEventListener("click", async (e) => {
+      circle_mouse.style.width = "2vh";
+      circle_mouse.style.height = "2vh";
+      circle_mouse.style.top = "-1vh";
+      circle_mouse.style.left = "-1vh";
+    });
+
+    tick();
+
+    // GAME
+    const current_game = {
+      score: 0,
+      active_direction: 'R',
+      stack_directions: [],
+      snake_speed: 2,
+      snake_x: [8, 7],
+      snake_y: [10, 10],
+      prev_x: [],
+      prev_y: [],
+      apple_x: 13,
+      apple_y: 13,
+
+    };
+
+    const apple = document.getElementById("home_page_game_apple");
+    apple.style.top = `${current_game.apple_y * 5}vmin`;
+    apple.style.left = `${current_game.apple_x * 5}vmin`;
+
+    for (let i = 0; i < current_game.snake_x.length; i++) {
+      document.getElementById(`snake_body_${i}`).style.top = `${current_game.snake_y[i] * 5}vmin`;
+      document.getElementById(`snake_body_${i}`).style.left = `${current_game.snake_x[i] * 5}vmin`;
+    }
+
+    setInterval(game_loop, 100);
+
+    function game_loop() {
+      for (let i = 0; i < current_game.snake_x.length; i++) {
+        const b = document.getElementById(`snake_body_${i}`);
+
+        b.style.top = `${current_game.snake_y[i] * 5}vmin`;
+        b.style.left = `${current_game.snake_x[i] * 5}vmin`;
+
+        // Move current and link to center
+        const b_current = document.getElementById(`home_page_game_snake_current_${i}`);
+        const b_link = document.getElementById(`home_page_game_snake_link_${i}`);
+
+        b_current.style.transition = 'none';
+        b_current.style.top = "33.33%";
+        b_current.style.left = "33.33%";
+        b_current.style.width = "33.33%";
+        b_current.style.height = "33.33%";
+        // b_current.style.transition = 'top 0.10s linear, left 0.10s linear, width 0.10s linear, height 0.10s linear';
+
+        b_link.style.transition = 'none';
+        b_link.offsetHeight;
+        b_link.style.top = "50.00%";
+        b_link.style.left = "50.00%";
+        b_link.style.width = "0.00%";
+        b_link.style.height = "0.00%";
+        // b_link.style.transition = 'top 0.10s linear, left 0.10s linear, width 0.10s linear, height 0.10s linear';
+        b_link.offsetHeight;
+      }
+
+      current_game.prev_x = current_game.snake_x.slice();
+      current_game.prev_y = current_game.snake_y.slice();
+
+
+      // for (let i = 0; i < current_game.snake_x.length - 1; ++i) {
+      //   const x = current_game.snake_x[i];
+      //   const p_x = current_game.snake_x[i + 1];
+      //   const y = current_game.snake_y[i];
+      //   const p_y = current_game.snake_x[i + 1];
+
+      //   const b_direction = (y < p_y) ? 'U' : (y > p_y) ? 'D' : (x < p_x) ? 'L' : 'R';
+      //   if (b_direction == 'U') {
+      //     const b_rect = document.getElementById(`home_page_game_snake_trect_${i}`);
+      //     b_rect.style.transition = "none";
+      //     b_rect.offsetHeight;
+      //     b_rect.style.top = "50.00%";
+      //     b_rect.style.left = "33.33%";
+      //     b_rect.style.width = "33.33%";
+      //     b_rect.style.height = "33.33%";
+      //   } else if (b_direction == 'D') {
+      //     const b_rect = document.getElementById(`home_page_game_snake_trect_${i}`);
+      //     b_rect.style.transition = "none";
+      //     b_rect.offsetHeight;
+      //     b_rect.style.top = "16.67%";
+      //     b_rect.style.left = "33.33%";
+      //     b_rect.style.width = "33.33%";
+      //     b_rect.style.height = "33.33%";
+      //   } else if (b_direction == "R") {
+      //     const b_rect = document.getElementById(`home_page_game_snake_trect_${i}`);
+      //     b_rect.style.transition = "none";
+      //     b_rect.offsetHeight;
+      //     b_rect.style.left = "16.67%";
+      //     b_rect.style.top = "33.33%";
+      //     b_rect.style.width = "33.33%";
+      //     b_rect.style.height = "33.33%";
+      //   }
+      // }
+
+      prev_last = {
+        x: current_game.snake_x[current_game.snake_x.length - 1],
+        y: current_game.snake_y[current_game.snake_y.length - 1],
+      }
+
+      for (let i = current_game.snake_x.length - 1; i > 0; i--) {
+        current_game.snake_x[i] = current_game.snake_x[i - 1];
+        current_game.snake_y[i] = current_game.snake_y[i - 1];
+      }
+
+      direction = current_game.stack_directions.length > 0 ? current_game.stack_directions.pop() : current_game.active_direction
+      let s = (direction == 'R' || direction == 'D') ? +1 : -1;
+
+      if (direction == 'R' || direction == 'L') {
+        current_game.snake_x[0] += s;
+      } else {
+        current_game.snake_y[0] += s;
+      }
+
+      for (let i = 0; i < current_game.snake_x.length; i++) {
+        if (current_game.snake_x[i] > 21) {
+          current_game.snake_x[i] = -1;
+        }
+        if (current_game.snake_y[i] > 21) {
+          current_game.snake_y[i] = -1;
+        }
+        if (current_game.snake_x[i] < -1) {
+          current_game.snake_x[i] = 21;
+        }
+        if (current_game.snake_y[i] < -1) {
+          current_game.snake_y[i] = 21;
+        }
+      }
+
+      if (current_game.snake_x[0] == current_game.apple_x && current_game.snake_y[0] == current_game.apple_y) {
+        document.getElementById(`snake_body_${current_game.snake_x.length - 1}`).classList.remove("snake_tail");
+        let new_body = document.createElement("div");
+        new_body.id = `snake_body_${current_game.snake_x.length}`;
+        new_body.classList.add("home_page_game_snake");
+        new_body.classList.add("animated_body");
+        new_body.classList.add("snake_tail");
+        new_body.innerHTML = `
+            <span id="home_page_game_snake_current_${current_game.snake_x.length}" class="home_page_game_snake_current_circle"></span>
+            <span id="home_page_game_snake_trail_${current_game.snake_x.length}" class="home_page_game_snake_trail_circle"></span>
+            <span id="home_page_game_snake_link_${current_game.snake_x.length}" class="home_page_game_snake_link"></span>
+            <span id="home_page_game_snake_trect_${current_game.snake_x.length}" class="home_page_game_snake_trail_rect"></span>
+        `;
+        document.getElementById("home_page_game").appendChild(new_body);
+        current_game.snake_x.push(prev_last.x);
+        current_game.snake_y.push(prev_last.y);
+
+        while (true) {
+          new_random = {
+            x: Math.floor(Math.random() * 20),
+            y: Math.floor(Math.random() * 20),
+          }
+          current_game.apple_x = new_random.x;
+          current_game.apple_y = new_random.y;
+          apple.style.top = `${current_game.apple_y * 5}%`;
+          apple.style.left = `${current_game.apple_x * 5}%`;
+          break;
+        }
+      }
+
+      for (let i = 0; i < current_game.snake_x.length; i++) {
+        const b = document.getElementById(`snake_body_${i}`);
+
+        const x = current_game.snake_x[i];
+        const p_x = current_game.prev_x[i];
+        const y = current_game.snake_y[i];
+        const p_y = current_game.prev_y[i];
+
+        const b_direction = (y < p_y) ? 'U' : (y > p_y) ? 'D' : (x < p_x) ? 'L' : 'R';
+        if (b_direction === 'U') {
+          // Move current and link to up
+          const b_current = document.getElementById(`home_page_game_snake_current_${i}`);
+
+          b_current.style.transition = 'none';
+          b_current.offsetHeight;
+          b_current.style.top = "33.33%";
+          b_current.style.left = "33.33%";
+          b_current.style.width = "33.33%";
+          b_current.style.height = "33.33%";
+          b_current.style.transition = 'top 0.10s linear, left 0.10s linear, width 0.10s linear, height 0.10s linear';
+          b_current.offsetHeight;
+          b_current.style.top = "0%";
+
+          const b_link = document.getElementById(`home_page_game_snake_link_${i}`);
+          const b_rect = document.getElementById(`home_page_game_snake_trect_${i}`);
+
+          b_link.style.transition = 'none';
+          b_link.offsetHeight;
+          b_link.style.top = "50.00%";
+          b_link.style.left = "33.33%";
+          b_link.style.width = "33.33%";
+          b_link.style.height = "0.00%";
+          b_link.style.transition = 'top 0.10s linear, height 0.10s linear';
+          b_link.offsetHeight;
+          b_link.style.top = "16.67%";
+          b_link.style.height = "33.33%";
+
+        } else if (b_direction === 'D') {
+          // Move current and link to down
+          const b_current = document.getElementById(`home_page_game_snake_current_${i}`);
+
+          b_current.style.transition = 'none';
+          b_current.offsetHeight;
+          b_current.style.top = "33.33%";
+          b_current.style.left = "33.33%";
+          b_current.style.width = "33.33%";
+          b_current.style.height = "33.33%";
+          b_current.style.transition = 'top 0.10s linear, left 0.10s linear, width 0.10s linear, height 0.10s linear';
+          b_current.offsetHeight;
+          b_current.style.top = "66.67%";
+
+          const b_link = document.getElementById(`home_page_game_snake_link_${i}`);
+          const b_rect = document.getElementById(`home_page_game_snake_trect_${i}`);
+
+          b_link.style.transition = 'none';
+          b_link.offsetHeight;
+          b_link.style.top = "50.00%";
+          b_link.style.left = "33.33%";
+          b_link.style.width = "33.33%";
+          b_link.style.height = "0.00%";
+          b_link.style.transition = 'top 0.10s linear, height 0.10s linear';
+          b_link.offsetHeight;
+          b_link.style.height = "33.33%";
+        } else if (b_direction === 'R') {
+          // Move current and link to down
+          const b_current = document.getElementById(`home_page_game_snake_current_${i}`);
+
+          b_current.style.transition = 'none';
+          b_current.offsetHeight;
+          b_current.style.top = "33.33%";
+          b_current.style.left = "33.33%";
+          b_current.style.width = "33.33%";
+          b_current.style.height = "33.33%";
+          b_current.style.transition = 'top 0.10s linear, left 0.10s linear, width 0.10s linear';
+          b_current.offsetHeight;
+          b_current.style.left = "66.67%";
+
+          const b_link = document.getElementById(`home_page_game_snake_link_${i}`);
+          const b_rect = document.getElementById(`home_page_game_snake_trect_${i}`);
+
+          b_link.style.transition = 'none';
+          b_link.offsetHeight;
+          b_link.style.top = "33.33%";
+          b_link.style.left = "50.00%";
+          b_link.style.width = "0.00%";
+          b_link.style.height = "33.33%";
+          b_link.style.transition = 'left 0.10s linear, width 0.10s linear';
+          b_link.offsetHeight;
+          b_link.style.width = "33.33%";
+        } else if (b_direction === 'L') {
+          // Move current and link to down
+          const b_current = document.getElementById(`home_page_game_snake_current_${i}`);
+
+          b_current.style.transition = 'none';
+          b_current.offsetHeight;
+          b_current.style.top = "33.33%";
+          b_current.style.left = "33.33%";
+          b_current.style.width = "33.33%";
+          b_current.style.height = "33.33%";
+          b_current.style.transition = 'top 0.10s linear, left 0.10s linear, width 0.10s linear';
+          b_current.offsetHeight;
+          b_current.style.left = "0%";
+
+          const b_link = document.getElementById(`home_page_game_snake_link_${i}`);
+          const b_rect = document.getElementById(`home_page_game_snake_trect_${i}`);
+
+          b_link.style.transition = 'none';
+          b_link.offsetHeight;
+          b_link.style.top = "33.33%";
+          b_link.style.left = "50.00%";
+          b_link.style.width = "0.00%";
+          b_link.style.height = "33.33%";
+          b_link.style.transition = 'left 0.10s linear, width 0.10s linear';
+          b_link.offsetHeight;
+          b_link.style.left = "16.67%";
+          b_link.style.width = "33.33%";
+        }
+      }
+
+
+      for (let i = 1; i < current_game.snake_x.length; ++i) {
+        const b_rect = document.getElementById(`home_page_game_snake_trect_${i}`);
+
+        const x = current_game.prev_x[i];
+        const p_x = current_game.prev_x[i - 1];
+        const y = current_game.prev_y[i];
+        const p_y = current_game.prev_y[i - 1];
+
+        const b_direction = (y < p_y) ? 'D' : (y > p_y) ? 'U' : (x < p_x) ? 'R' : 'L';
+        console.log(b_direction, y, p_y);
+        if (b_direction === 'U') {
+          b_rect.style.top = "16.67%"
+          b_rect.style.left = "33.33%"
+          b_rect.style.width = "33.33%"
+          b_rect.style.height = "33.33%"
+          b_rect.style.transition = 'none';
+          b_rect.offsetHeight;
+
+
+          b_rect.style.height = "0%";
+          b_rect.style.transition = 'height 0.10s linear';
+          b_rect.offsetHeight;
+        } else if (b_direction === 'L') {
+          b_rect.style.left = "16.67%"
+          b_rect.style.top = "33.33%"
+          b_rect.style.width = "33.33%"
+          b_rect.style.height = "33.33%"
+          b_rect.style.transition = 'none';
+          b_rect.offsetHeight;
+
+
+          b_rect.style.width = "0%";
+          b_rect.style.transition = 'width 0.10s linear';
+          b_rect.offsetHeight;
+        } else if (b_direction === 'R') {
+          b_rect.style.left = "50.00%"
+          b_rect.style.top = "33.33%"
+          b_rect.style.width = "33.33%"
+          b_rect.style.height = "33.33%"
+          b_rect.style.transition = 'none';
+          b_rect.offsetHeight;
+
+
+          b_rect.style.left = "83.33%";
+          b_rect.style.width = "0%";
+          b_rect.style.transition = 'left 0.10s linear, width 0.10s linear';
+          b_rect.offsetHeight;
+        } else if (b_direction === 'D') {
+          b_rect.style.top = "50.00%"
+          b_rect.style.left = "33.33%"
+          b_rect.style.height = "33.33%"
+          b_rect.style.width = "33.33%"
+          b_rect.style.transition = 'none';
+          b_rect.offsetHeight;
+
+
+          b_rect.style.top = "83.33%";
+          b_rect.style.height = "0%";
+          b_rect.style.transition = 'top 0.10s linear, height 0.10s linear';
+          b_rect.offsetHeight;
+        } else {
+          b_rect.style.transition = 'none';
+          b_rect.offsetHeight;
+
+
+          b_rect.style.width = "0%"
+          b_rect.style.height = "0%"
+        }
+      }
+    }
+
+    document.addEventListener("keydown", function (e) {
+      direction = current_game.active_direction
+      switch (e.key) {
+        case "ArrowLeft":
+          if (direction != 'R') {
+            console.log('Left Key pressed!');
+            current_game.active_direction = 'L';
+            current_game.stack_directions.unshift('L');
+          }
+          break;
+        case "ArrowDown":
+          if (direction != 'U') {
+            event.preventDefault();
+            console.log('Bottom Key pressed!');
+            current_game.active_direction = 'D';
+            current_game.stack_directions.unshift('D');
+          }
+          break;
+        case "ArrowUp":
+          if (direction != 'D') {
+            console.log('Top Key pressed!');
+            current_game.active_direction = 'U';
+            current_game.stack_directions.unshift('U');
+          }
+          break;
+        case "ArrowRight":
+          if (direction != 'L') {
+            console.log('Right Key pressed!');
+            current_game.active_direction = 'R';
+            current_game.stack_directions.unshift('R');
+          }
+          break;
+      }
+    });
+
+    // NAV
+
+    document.getElementById("news_nav").addEventListener("click", (e) => {
+      document.getElementById("news_nav").classList.add("nav_selected");
+      document.getElementById("purpose_nav").classList.remove("nav_selected");
+      document.getElementById("games_nav").classList.remove("nav_selected");
+      document.getElementById("support_nav").classList.remove("nav_selected");
+
+
+      document.getElementById("news_page").scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    })
+
+    document.getElementById("purpose_nav").addEventListener("click", (e) => {
+      document.getElementById("news_nav").classList.remove("nav_selected");
+      document.getElementById("purpose_nav").classList.add("nav_selected");
+      document.getElementById("games_nav").classList.remove("nav_selected");
+      document.getElementById("support_nav").classList.remove("nav_selected");
+
+
+      document.getElementById("purpose_page").scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    })
+
+    document.getElementById("games_nav").addEventListener("click", (e) => {
+      document.getElementById("news_nav").classList.remove("nav_selected");
+      document.getElementById("purpose_nav").classList.remove("nav_selected");
+      document.getElementById("games_nav").classList.add("nav_selected");
+      document.getElementById("support_nav").classList.remove("nav_selected");
+
+
+      document.getElementById("games_page").scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    })
+
+    document.getElementById("support_nav").addEventListener("click", (e) => {
+      document.getElementById("news_nav").classList.remove("nav_selected");
+      document.getElementById("purpose_nav").classList.remove("nav_selected");
+      document.getElementById("games_nav").classList.remove("nav_selected");
+      document.getElementById("support_nav").classList.add("nav_selected");
+
+
+      document.getElementById("support_page").scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    })
+
+    document.getElementById("title_box").addEventListener("click", (e) => {
+      document.getElementById("news_nav").classList.remove("nav_selected");
+      document.getElementById("purpose_nav").classList.remove("nav_selected");
+      document.getElementById("games_nav").classList.remove("nav_selected");
+      document.getElementById("support_nav").classList.remove("nav_selected");
+
+
+      document.getElementById("home_page").scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    })
+
+    // Typing title
+    // var i = 0;
+    // var txt = 'create';
+    // var e = 500;
+
+    // function typeWriter() {
+    //   if (i < txt.length) {
+    //     document.getElementById("home_page_title").innerHTML += txt.charAt(i);
+    //     i++;
+    //     setTimeout(typeWriter, e);
+    //   }
+    // }
+    // typeWriter();
+  </script>
+
+</body>
+
+</html>
