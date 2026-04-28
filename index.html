@@ -91,6 +91,14 @@
             height: 10%;
         }
 
+        .buttons_div {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            justify-content: center;
+            align-items: center;
+        }
+
         @media only screen and (max-width: 768px) {
             /* Phone size */
 
@@ -117,6 +125,55 @@
             #bts_story {
                 width: 40%;
             }
+        }
+
+        .email_input {
+            font-family: inherit;
+            font-size: 16px;
+            border: #66ff7f35 solid 2px;
+            color: white;
+            background-color: transparent;
+            padding: 0.25em 1em;
+            display: inline-flex;
+            align-items: center;
+            border-radius: 50vh;
+            overflow: hidden;
+            transition: all 0.2s;
+            justify-content: space-between;
+            gap: 0.7em;
+            position: relative;
+            font-family: Rubik, sans-serif;
+        }
+
+        .email_input:focus {
+            border: #68d87b6b solid 2px;
+            outline: none;
+        }
+
+        .subform {
+            display: flex;
+            gap: 16px;
+        }
+
+        .submit_button {
+            font-family: inherit;
+            font-size: 16px;
+            background: #66ff80;
+            color: #0f0f0f;
+            padding: 0.25em 1em;
+            display: inline-flex;
+            align-items: center;
+            font-weight: bold;
+            border: none;
+            border-radius: 50vh;
+            overflow: hidden;
+            transition: all 0.2s;
+            /* cursor: pointer; */
+            justify-content: space-between;
+            gap: 0.7em;
+            position: relative;
+            /* width: 90%; */
+            font-family: Rubik, sans-serif;
         }
 
         /* From Uiverse.io by adamgiebl */
@@ -157,6 +214,10 @@
             animation: fly-1 0.6s ease-in-out infinite alternate;
         }
 
+        .submit_button:hover .form-svg-wrapper {
+            animation: fly-1 0.6s ease-in-out infinite alternate;
+        }
+
         .contact_button:hover svg {
             transform: translateX(3.3em) rotate(45deg) scale(1.1);
         }
@@ -171,6 +232,12 @@
 
 
         .contact_button svg {
+            display: block;
+            transform-origin: center center;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .submit_button svg {
             display: block;
             transform-origin: center center;
             transition: transform 0.3s ease-in-out;
@@ -204,20 +271,37 @@
                 next-to-be-released puzzle game, and my university studies. Instead of a placeholder or a sloppy page,
                 this note will do just fine for now.
             </p>
-            <button class="contact_button" id="contact_button"
-                onclick="window.location.href='mailto:talk@bluetobystudio.com'">
-                <div class=" svg-wrapper-1">
-                    <div class="svg-wrapper">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20">
-                            <path fill="none" d="M0 0h24v24H0z"></path>
-                            <path fill="#0f0f0f"
-                                d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z">
-                            </path>
-                        </svg>
+            <div class="buttons_div">
+                <button class="contact_button" id="contact_button"
+                    onclick="window.location.href='mailto:talk@bluetobystudio.com'">
+                    <div class=" svg-wrapper-1">
+                        <div class="svg-wrapper">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20">
+                                <path fill="none" d="M0 0h24v24H0z"></path>
+                                <path fill="#0f0f0f"
+                                    d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z">
+                                </path>
+                            </svg>
+                        </div>
                     </div>
-                </div>
-                <b>Get in touch</b>
-            </button>
+                    <b>Get in touch</b>
+                </button>
+                <form class="subform" action="https://buttondown.com/api/emails/embed-subscribe/vandenberge"
+                    method="post" class="embeddable-buttondown-form">
+                    <input class="email_input" type="email" name="email" id="bd-email" placeholder="email" />
+                    <input class="submit_button" type="submit" value="Subscribe" />
+                    <div class="form-svg-wrapper-1">
+                        <div class="form-svg-wrapper">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20">
+                                <path fill="none" d="M0 0h24v24H0z"></path>
+                                <path fill="#0f0f0f"
+                                    d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z">
+                                </path>
+                            </svg>
+                        </div>
+                    </div>
+                </form>
+            </div>
             <div id="bottom_spacer"></div>
         </div>
     </div>
