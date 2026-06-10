@@ -3,7 +3,7 @@ export async function onRequestPost(context) {
     const body = await context.request.json();
     const email = body.email;
     const emailoctopusReturn = await requestEmailOctopus(context, email);
-    return new Response(JSON.stringify({ message: `Subscribe with email: ${email}`, content: emailoctopusReturn, return: (emailoctopusReturn.status === 200) }), { status: 200 });
+    return new Response(JSON.stringify({ message: `Subscribe with email: ${email}`, content: emailoctopusReturn, return: (emailoctopusReturn.status === 200 || emailoctopusReturn.status === 409) }), { status: 200 });
   } catch (err) {
     return new Response(JSON.stringify({ error: err.message }), { status: 500 });
   }
