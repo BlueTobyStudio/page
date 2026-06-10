@@ -15,7 +15,6 @@ async function requestEmailOctopus(context, email) {
   }
   const token = context.env.NL_KEY;
   const listId = context.env.NL_ID;
-  const header = `Authorization: Bearer ${token}`;
   const url = `https://api.emailoctopus.com/lists/${listId}/contacts`;
   const data = JSON.stringify({
     "email_address": email,
@@ -31,7 +30,7 @@ async function requestEmailOctopus(context, email) {
     url,
     {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
       body: data
     }
   );
