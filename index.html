@@ -2,309 +2,78 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blue Toby Studio</title>
-    <meta name="description" content="Human">
-    <link rel="icon" href="./res/favicon.ico" type="image/x-icon">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
-        rel="stylesheet">
-
-    <style>
-        body {
-            margin: 0;
-        }
-
-        #main_div {
-            display: flex;
-            flex-direction: column;
-            width: 100vw;
-            height: 100vh;
-            padding: 0;
-        }
-
-        #top_bar {
-            background-color: #0f0f0f;
-            width: 100%;
-            height: 9%;
-            min-height: 80px;
-
-            display: flex;
-            gap: 16px;
-            align-items: center;
-            justify-content: center;
-
-            container-type: size;
-        }
-
-        #content {
-            background-color: #0f0f0f;
-            width: 100%;
-            height: 91%;
-            gap: 32px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        #bts_logo {
-            height: 54%;
-            aspect-ratio: 1;
-        }
-
-        #bts_title {
-            font-size: 40cqh;
-            line-height: 1;
-            white-space: nowrap;
-            color: #e5e7ed;
-            font-family: Rubik, sans-serif;
-            text-transform: uppercase;
-            font-weight: 900;
-        }
-
-        #bts_content {
-            color: #e5e7ed;
-            font-family: Rubik, sans-serif;
-            font-weight: 400;
-            font-size: 26px;
-            opacity: 0.85;
-            width: 50%;
-            text-align: center;
-            margin: 0;
-        }
-
-        #bts_story {
-            color: #e5e7ed;
-            font-family: Rubik, sans-serif;
-            font-weight: 400;
-            font-size: 20px;
-            opacity: 0.60;
-            width: 40%;
-            text-align: center;
-            margin: 0;
-        }
-
-        #bottom_spacer {
-            height: 10%;
-        }
-
-        .buttons_div {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-            justify-content: center;
-            align-items: center;
-        }
-
-        @media only screen and (max-width: 768px) {
-            /* Phone size */
-
-            #bts_title {
-                display: none;
-            }
-
-            #bts_content {
-                width: 80%;
-            }
-
-            #bts_story {
-                width: 80%;
-            }
-        }
-
-        @media only screen and (min-width: 768px) {
-            /* Desktop size */
-
-            #bts_content {
-                width: 50%;
-            }
-
-            #bts_story {
-                width: 40%;
-            }
-        }
-
-        .email_input {
-            font-family: inherit;
-            font-size: 16px;
-            border: #66ff7f35 solid 2px;
-            color: white;
-            background-color: transparent;
-            padding: 0.25em 1em;
-            display: inline-flex;
-            align-items: center;
-            border-radius: 50vh;
-            overflow: hidden;
-            transition: all 0.2s;
-            justify-content: space-between;
-            gap: 0.7em;
-            position: relative;
-            font-family: Rubik, sans-serif;
-        }
-
-        .email_input:focus {
-            border: #68d87b6b solid 2px;
-            outline: none;
-        }
-
-        .subform {
-            display: flex;
-            gap: 16px;
-        }
-
-        .submit_button {
-            font-family: inherit;
-            font-size: 16px;
-            background: #66ff80;
-            color: #0f0f0f;
-            padding: 0.25em 1em;
-            display: inline-flex;
-            align-items: center;
-            font-weight: bold;
-            border: none;
-            border-radius: 50vh;
-            overflow: hidden;
-            transition: all 0.2s;
-            /* cursor: pointer; */
-            justify-content: space-between;
-            gap: 0.7em;
-            position: relative;
-            /* width: 90%; */
-            font-family: Rubik, sans-serif;
-        }
-
-        /* From Uiverse.io by adamgiebl */
-        .contact_button {
-            font-family: inherit;
-            font-size: 16px;
-            background: #66ff80;
-            color: white;
-            padding: 0.25em 1em;
-            display: inline-flex;
-            align-items: center;
-            border: none;
-            border-radius: 50vh;
-            overflow: hidden;
-            transition: all 0.2s;
-            /* cursor: pointer; */
-            justify-content: space-between;
-            gap: 0.7em;
-            position: relative;
-            /* width: 90%; */
-        }
-
-        .contact_button b {
-            display: none;
-            font-family: Rubik, sans-serif;
-            font-weight: 600;
-            color: #0f0f0f;
-        }
-
-        /**/
-        .contact_button b {
-            display: block;
-            transition: all 0.3s ease-in-out;
-            /* text-align: end; */
-        }
-
-        .contact_button:hover .svg-wrapper {
-            animation: fly-1 0.6s ease-in-out infinite alternate;
-        }
-
-        .submit_button:hover .form-svg-wrapper {
-            animation: fly-1 0.6s ease-in-out infinite alternate;
-        }
-
-        .contact_button:hover svg {
-            transform: translateX(3.3em) rotate(45deg) scale(1.1);
-        }
-
-        .contact_button:hover b {
-            transform: translateX(10em);
-        }
-
-        .contact_button:active {
-            transform: scale(0.95);
-        }
-
-
-        .contact_button svg {
-            display: block;
-            transform-origin: center center;
-            transition: transform 0.3s ease-in-out;
-        }
-
-        .submit_button svg {
-            display: block;
-            transform-origin: center center;
-            transition: transform 0.3s ease-in-out;
-        }
-
-        @keyframes fly-1 {
-            from {
-                transform: translateY(0.05em);
-            }
-
-            to {
-                transform: translateY(-0.05em);
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blue Toby Studio</title>
+  <meta name="description" content="Human">
+  <link rel="icon" href="./res/favicon.ico" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 
 </head>
 
 <body>
-    <div id="main_div">
-        <div id="top_bar">
-            <img src="res/white.svg" alt="#" id="bts_logo" />
-            <h1 id="bts_title">Blue Toby Studio</h1>
-        </div>
-        <div id="content">
-            <h2 id="bts_content">
+  <div id="main_div">
+    <div id="top_bar">
+      <img src="res/white.svg" alt="#" id="bts_logo" />
+      <h1 id="bts_title">Blue Toby Studio</h1>
+    </div>
+    <div id="content">
+      <!-- <h2 id="bts_content">
                 The Blue Toby Studio is a <strong>human-driven</strong> game studio initiated in 2026.
-            </h2>
-            <p id="bts_story">
+            </h2> -->
+      <!-- <p id="bts_story">
                 As I would love to work on the identity and the website of the studio, I am currently focused on Sonoklo, a
                 next-to-be-released puzzle game, and my university studies. Instead of a placeholder or a sloppy page,
                 this note will do just fine for now.
-            </p>
-            <div class="buttons_div">
-                <button class="contact_button" id="contact_button"
-                    onclick="window.location.href='mailto:talk@bluetobystudio.com'">
-                    <div class=" svg-wrapper-1">
-                        <div class="svg-wrapper">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20">
-                                <path fill="none" d="M0 0h24v24H0z"></path>
-                                <path fill="#0f0f0f"
-                                    d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z">
-                                </path>
-                            </svg>
-                        </div>
-                    </div>
-                    <b>Get in touch</b>
-                </button>
-                <form class="subform" action="https://buttondown.com/api/emails/embed-subscribe/vandenberge"
-                    method="post" class="embeddable-buttondown-form">
-                    <input class="email_input" type="email" name="email" id="bd-email" placeholder="email" />
-                    <input class="submit_button" type="submit" value="Subscribe" />
-                    <div class="form-svg-wrapper-1">
-                        <div class="form-svg-wrapper">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20">
-                                <path fill="none" d="M0 0h24v24H0z"></path>
-                                <path fill="#0f0f0f"
-                                    d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z">
-                                </path>
-                            </svg>
-                        </div>
-                    </div>
-                </form>
+            </p> -->
+      <div class="buttons_div">
+        <button class="contact_button" id="contact_button"
+          onclick="window.location.href='mailto:talk@bluetobystudio.com'">
+          <div class=" svg-wrapper-1">
+            <div class="svg-wrapper">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20">
+                <path fill="none" d="M0 0h24v24H0z"></path>
+                <path fill="#0f0f0f"
+                  d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z">
+                </path>
+              </svg>
             </div>
-            <div id="bottom_spacer"></div>
-        </div>
+          </div>
+          <b>Get in touch</b>
+        </button>
+      </div>
+      <div id="bottom_spacer"></div>
     </div>
+  </div>
+  <div class="newsletterpopup" id="npp">
+    <div class="newslettertop">
+        <h2 class="newslettertitle">
+          Newsletter
+        </h2>
+        <button class="newsletterclosebutton" id="ncb">
+          Close
+        </button>
+    </div>
+    <div class="newslettersubtop">
+        <h2 class="newslettersubtitle">
+          Stay up to date on the studio's progress
+        </h2>
+    </div>
+    <div class="newslettercontent">
+        <form class="subform" action="https://formspree.io/f/xqeollvd" method="POST" id="newsletter-form"
+          class="embeddable-buttondown-form">
+          <input class="email_input" type="email" name="email" id="email" placeholder="youremail@example.com" />
+          <button class="submit_button" type="submit">
+            Subscribe
+          </button>
+        </form>
+    </div>
+  </div>
+  <script src="script.js"></script>
 </body>
 
 </html>
