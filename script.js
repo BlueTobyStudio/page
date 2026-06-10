@@ -21,7 +21,7 @@ function onCloseNewsletter() {
 
 async function onSubmitNewsletter(event) {
   const emailValue = emailInput.value;
-  const response = await fetch('/functions/newsletter', {
+  const response = await fetch('/newsletter', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ email: emailValue })
