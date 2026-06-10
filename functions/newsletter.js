@@ -27,15 +27,15 @@ async function requestEmailOctopus(context, email) {
     "status": "subscribed"
   });
 
-  const ret = (await fetch(
+  const ret = await fetch(
     url,
     {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: data
     }
-  ));
-  console.log("return is: " + JSON.stringify(ret));
-
-  return ret;
+  );
+  const json = await ret.json();
+  console.log("return is: " + json);
+  return json;
 }
