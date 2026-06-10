@@ -33,6 +33,8 @@ async function onSubmitNewsletter(event) {
   });
 
   const body = await response.json();
+  console.log("NEWSLETTER RESPONSE: ");
+  console.log(body);
 
   const ret = body.return;
   if (ret === 0) {
