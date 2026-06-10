@@ -44,6 +44,7 @@ async function onSubmitNewsletter(event) {
   }
   } catch (err) {
     setTitleToError();
+    console.log("Error: " + err.message);
   }
   event.preventDefault();
 }

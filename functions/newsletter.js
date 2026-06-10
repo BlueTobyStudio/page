@@ -1,6 +1,7 @@
 export async function onRequestPost(context) {
   try {
-    const email = await context.request.json().email;
+    const body = context.request.json();
+    const email = body.email;
     const emailoctopusReturn = await requestEmailOctopus(context, email);
     return new Response(JSON.stringify({ message: `[NEWSLETTER] Subscribe with email: ${email}`, content: emailoctopusReturn, return: 0 }), { status: 200 });
   } catch (err) {
