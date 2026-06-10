@@ -32,9 +32,11 @@ async function onSubmitNewsletter(event) {
     body: JSON.stringify({ email: emailValue })
   });
 
-  console.log("RESPONSE: " + JSON.stringify(response.json()));
+  const body = response.json();
+  console.log("RESPONSE: ");
+  console.log(body);
 
-  const ret = response.json().return;
+  const ret = body.return;
   if (ret === 0) {
     setTitleToSucess();
   } else {
