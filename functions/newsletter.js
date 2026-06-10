@@ -1,6 +1,6 @@
 export async function onRequestPost(context) {
   try {
-    const body = context.request.json();
+    const body = await context.request.json();
     const email = body.email;
     const emailoctopusReturn = await requestEmailOctopus(context, email);
     return new Response(JSON.stringify({ message: `[NEWSLETTER] Subscribe with email: ${email}`, content: emailoctopusReturn, return: 0 }), { status: 200 });
@@ -10,7 +10,7 @@ export async function onRequestPost(context) {
 }
 
 async function requestEmailOctopus(context, email) {
-  if (email === null) {
+  if (email === undefined) {
     return {message: "email is null"};
   }
   const token = context.env.NL_KEY;
@@ -34,7 +34,7 @@ async function requestEmailOctopus(context, email) {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data)
     }
-  )
+  );
 
   return ret;
 }
