@@ -1,4 +1,4 @@
-export async function subscribeToNewsletter(context) {
+export async function onRequestPost(context) {
   try {
     const email = await context.request.json().email;
     return new Response(JSON.stringify({ message: `Sub with email: ${email}` }), { status: 200 });
