@@ -313,3 +313,11 @@ body {
 .newsletterpopup.hide {
   animation: newsletterHide 0.5s ease-in forwards;
 }
+
+.failed_title {
+ color: #ff7a66; 
+}
+
+.success_title {
+ color: #7ee38f; 
+}
