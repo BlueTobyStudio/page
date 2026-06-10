@@ -32,7 +32,7 @@ async function onSubmitNewsletter(event) {
     body: JSON.stringify({ email: emailValue })
   });
 
-  const body = response.json();
+  const body = await response.json();
   console.log("RESPONSE: ");
   console.log(body);
 
