@@ -20,9 +20,9 @@ async function requestEmailOctopus(context, email) {
     "email_address": email,
     "fields": {
     },
-    "tags": {
-      "newsletter": true
-    },
+    "tags": [
+      "newsletter"
+    ],
     "status": "subscribed"
   });
 
