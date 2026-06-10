@@ -37,7 +37,7 @@ async function onSubmitNewsletter(event) {
   console.log(body);
 
   const ret = body.return;
-  if (ret === 0) {
+  if (ret === false) {
     setTitleToSucess();
   } else {
     setTitleToError();
